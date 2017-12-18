@@ -22,7 +22,7 @@ import model.TipoDocumento;
 
 public class Controller implements Initializable{
 	private Documento mainDoc = new Documento();
-	private Documento importDoc = new Documento();
+	//private Documento importDoc = new Documento();
 
 	//Listas
 	private ObservableList<Atributo> listaAtributos;
