@@ -1,0 +1,39 @@
+/* JavaFX CSS - Leave this comment until you have at least create one rule which uses -fx-Property */
+
+.pane{
+	/*-fx-background-color: #383838;*/
+}
+
+.pane .label{
+	/*-fx-text-fill: white;*/		
+}
+
+.button{
+	/*-fx-background-color: #AB4642;
+	-fx-text-fill: white;*/
+} 
+
+.table-view{
+	-fx-padding: 0 0 0 0;
+}
+
+.table-view .column-header{
+	-fx-background-color: #3A5B96;
+}
+
+.table-view .label{
+	-fx-text-fill: white;
+}
+
+.menu-bar , .menu-bar *{
+	/*-fx-background-color: #2B2B2B;*/
+}
+
+.menu-bar .menu .label{
+	/*-fx-text-fill: white;*/
+}
+
+.split-pane *.split-pane-divider {
+    -fx-padding: 0 0 0 0;
+}
+
