@@ -68,10 +68,11 @@
                                                 <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
                                              </rowConstraints>
                                           </GridPane>
+                                          <Label text="Definir Metodos especiales:" />
                                           <GridPane>
                                             <columnConstraints>
-                                              <ColumnConstraints hgrow="SOMETIMES" maxWidth="140.0" minWidth="10.0" prefWidth="140.0" />
-                                              <ColumnConstraints hgrow="SOMETIMES" maxWidth="167.0" minWidth="10.0" prefWidth="120.0" />
+                                              <ColumnConstraints hgrow="SOMETIMES" maxWidth="140.0" minWidth="10.0" prefWidth="129.0" />
+                                              <ColumnConstraints hgrow="SOMETIMES" maxWidth="167.0" minWidth="10.0" prefWidth="131.0" />
                                             </columnConstraints>
                                             <rowConstraints>
                                               <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
@@ -94,6 +95,9 @@
                                                       <Insets right="5.0" />
                                                    </padding>
                                                 </Label>
+                                                <CheckBox mnemonicParsing="false" text="Agregar" GridPane.columnIndex="1" />
+                                                <CheckBox mnemonicParsing="false" text="Agregar" GridPane.columnIndex="1" GridPane.rowIndex="1" />
+                                                <CheckBox mnemonicParsing="false" text="Agregar" GridPane.columnIndex="1" GridPane.rowIndex="2" />
                                              </children>
                                           </GridPane>
                                        </children>
