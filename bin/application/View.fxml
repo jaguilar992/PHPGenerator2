@@ -12,17 +12,15 @@
         <menus>
           <Menu mnemonicParsing="false" text="Archivo">
             <items>
-              <MenuItem mnemonicParsing="false" text="Close" />
-            </items>
-          </Menu>
-          <Menu mnemonicParsing="false" text="Herramientas">
-            <items>
-              <MenuItem mnemonicParsing="false" text="Delete" />
+                  <MenuItem fx:id="menuNuevo" mnemonicParsing="false" onAction="#Nuevo" text="Nuevo" />
+                  <MenuItem fx:id="menuGuardar" mnemonicParsing="false" text="Guardar (Ctrl+S)" />
+                  <MenuItem fx:id="menuGuadarComo" mnemonicParsing="false" text="Guardar Como (Ctrl+Shift+S)" />
+              <MenuItem fx:id="menuSalir" mnemonicParsing="false" onAction="#Salir" text="Salir" />
             </items>
           </Menu>
           <Menu mnemonicParsing="false" text="Ayuda">
             <items>
-              <MenuItem mnemonicParsing="false" text="About" />
+              <MenuItem fx:id="menuAcerca" mnemonicParsing="false" onAction="#About" text="About" />
             </items>
           </Menu>
         </menus>
@@ -51,8 +49,8 @@
                                                    </GridPane.margin>
                                                 </Label>
                                                 <TextField fx:id="txtNombreDocumento" promptText="Nombre Documento" GridPane.columnIndex="1" />
-                                                <ComboBox fx:id="cmbTipoDocumento" disable="true" prefHeight="25.0" prefWidth="195.0" GridPane.columnIndex="1" GridPane.rowIndex="1" />
-                                                <Label alignment="CENTER_RIGHT" contentDisplay="RIGHT" disable="true" prefHeight="17.0" prefWidth="114.0" text="Tipo: " textAlignment="RIGHT" GridPane.rowIndex="1">
+                                                <ComboBox fx:id="cmbTipoDocumento" disable="true" prefHeight="25.0" prefWidth="195.0" visible="false" GridPane.columnIndex="1" GridPane.rowIndex="1" />
+                                                <Label alignment="CENTER_RIGHT" contentDisplay="RIGHT" disable="true" prefHeight="17.0" prefWidth="114.0" text="Tipo: " textAlignment="RIGHT" visible="false" GridPane.rowIndex="1">
                                                    <padding>
                                                       <Insets right="5.0" />
                                                    </padding>
@@ -65,8 +63,42 @@
                                              <rowConstraints>
                                                 <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
                                                 <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-                                                <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
                                              </rowConstraints>
+                                          </GridPane>
+                                          <Label text="Herencia" />
+                                          <GridPane disable="true" prefHeight="110.0" prefWidth="260.0">
+                                            <columnConstraints>
+                                              <ColumnConstraints hgrow="SOMETIMES" maxWidth="187.0" percentWidth="100.0" />
+                                            </columnConstraints>
+                                            <rowConstraints>
+                                              <RowConstraints />
+                                              <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                                              <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                                                <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                                                <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                                            </rowConstraints>
+                                             <children>
+                                                <HBox alignment="CENTER_LEFT" prefHeight="100.0" prefWidth="200.0" GridPane.rowIndex="1">
+                                                   <children>
+                                                      <Button mnemonicParsing="false" prefHeight="25.0" prefWidth="76.0" text="Archivo">
+                                                         <HBox.margin>
+                                                            <Insets left="10.0" right="5.0" />
+                                                         </HBox.margin>
+                                                      </Button>
+                                                      <Label prefHeight="17.0" prefWidth="167.0" text="Abrir archivo...." />
+                                                   </children>
+                                                </HBox>
+                                                <CheckBox mnemonicParsing="false" text="Sobreescribir Métodos" GridPane.rowIndex="2">
+                                                   <GridPane.margin>
+                                                      <Insets left="10.0" />
+                                                   </GridPane.margin>
+                                                </CheckBox>
+                                                <CheckBox mnemonicParsing="false" text="Redifinir Atributos" GridPane.rowIndex="3">
+                                                   <GridPane.margin>
+                                                      <Insets left="10.0" />
+                                                   </GridPane.margin>
+                                                </CheckBox>
+                                             </children>
                                           </GridPane>
                                           <Label text="Definir Metodos especiales:" />
                                           <GridPane>
@@ -100,7 +132,7 @@
                                                 <CheckBox fx:id="cbxGetSet" mnemonicParsing="false" text="get/set" GridPane.columnIndex="1" GridPane.rowIndex="2" />
                                              </children>
                                           </GridPane>
-                                          <HBox alignment="CENTER_RIGHT" prefHeight="58.0" prefWidth="260.0">
+                                          <HBox alignment="BOTTOM_RIGHT" prefHeight="82.0" prefWidth="260.0">
                                              <children>
                                                 <Button fx:id="btnCleanEditor" mnemonicParsing="false" onAction="#clearEditor" text="Limpiar">
                                                    <HBox.margin>

@@ -1,24 +1,35 @@
 package application;
 
+import java.awt.Desktop;
+import java.io.IOException;
+import java.net.URISyntaxException;
 import java.net.URL;
 import java.util.ResourceBundle;
 
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
-import javafx.event.EventHandler;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
+import javafx.scene.Scene;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Alert.AlertType;
 import javafx.scene.control.Button;
 import javafx.scene.control.CheckBox;
 import javafx.scene.control.ComboBox;
+import javafx.scene.control.Hyperlink;
+import javafx.scene.control.MenuItem;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
 import javafx.scene.control.cell.PropertyValueFactory;
+import javafx.scene.image.Image;
 import javafx.scene.input.KeyCode;
+import javafx.scene.layout.AnchorPane;
+import javafx.scene.text.Text;
+import javafx.scene.text.TextFlow;
+import javafx.stage.Stage;
 import model.Atributo;
 import model.Documento;
 import model.Metodo;
@@ -81,6 +92,13 @@ public class Controller implements Initializable{
 	@FXML CheckBox cbxConstruct;
 	@FXML CheckBox cbxToString;
 	@FXML CheckBox cbxGetSet;
+	
+		//	MenuItem
+	@FXML MenuItem menuNuevo;
+	@FXML MenuItem menuGuardar;
+	@FXML MenuItem menuGuadarComo;
+	@FXML MenuItem menuSalir;
+	@FXML MenuItem menuAcerca;
 	
 	@Override
 	public void initialize(URL location, ResourceBundle resources) {
@@ -396,6 +414,98 @@ public class Controller implements Initializable{
 			mainDoc.setGetAndSet(cbxGetSet.isSelected());
 			mainDoc.setTostring(cbxToString.isSelected());
 			txtEditor.setText(mainDoc.generar());
+		}else {
+			Alert alert = new Alert(AlertType.WARNING);
+			alert.setTitle("Alerta");
+			alert.setHeaderText("Defina un nombre para la Clase");
+			alert.showAndWait();
+		}
+	}
+	
+	@FXML 
+	public void Salir() {
+		Stage stage = (Stage)btnGenerate.getScene().getWindow();
+	    stage.close();
+	}
+	
+	@FXML
+	public void Nuevo() {
+		try {
+			Stage stage = new Stage();
+			AnchorPane raiz = (AnchorPane)FXMLLoader.load(getClass().getResource("View.fxml"));
+			Scene scene = new Scene(raiz);
+			scene.getStylesheets().add(getClass().getResource("application.css").toExternalForm());
+			stage.setScene(scene);
+			stage.setResizable(false);
+			stage.setTitle("PHP Generator 2.0");
+			stage.getIcons().add(new Image("img/logo.png"));
+			stage.show();
+		} catch(Exception e) {
+			e.printStackTrace();
+		}
+	}
+	
+	@FXML
+	public void About() {
+		try {
+			Stage stage = new Stage();
+			AnchorPane raiz = (AnchorPane)FXMLLoader.load(getClass().getResource("About.fxml"));
+			
+			String buffer;
+			buffer = "";
+			buffer+="Red Lion Studio"+"\n";
+			buffer+="Generador de Clases para PHP - © 2017"+"\n";
+			buffer+=""+"\n";
+			
+			Text text1 = new Text(buffer);
+			
+			buffer = "";
+			buffer+="Sitio Web:"+"\n";
+			Text text2 = new Text(buffer);
+			Hyperlink url1 = new Hyperlink("http://jaguilar992.github.io/");
+			
+			buffer = "";
+			buffer+=""+"\n";
+			buffer+="Repositorio:\n";
+			Text text3 = new Text(buffer);
+			Hyperlink url2 = new Hyperlink("https://github.com/jaguilar992/PHPGenerator2");
+			
+		    TextFlow desc = new TextFlow(text1,text2, url1, text3, url2);
+			desc.setLayoutX(331);
+			desc.setLayoutY(54);
+			desc.setPrefWidth(229);
+			desc.setPrefHeight(292);
+			raiz.getChildren().add(desc);
+			
+			Scene scene = new Scene(raiz);
+			stage.setScene(scene);
+			stage.setResizable(false);
+			stage.setTitle("About");
+			stage.getIcons().add(new Image("img/logo.png"));
+			stage.show();
+			
+			url1.setOnMouseClicked((event)->{
+			    try {
+			    	Desktop.getDesktop().browse(new URL(url1.getText()).toURI());
+			    } catch (IOException e) {
+			        e.printStackTrace();
+			    } catch (URISyntaxException e) {
+					e.printStackTrace();
+			    }
+			});
+			
+			url2.setOnMouseClicked((event)->{
+			    try {
+			    	Desktop.getDesktop().browse(new URL(url2.getText()).toURI());
+			    } catch (IOException e) {
+			        e.printStackTrace();
+			    } catch (URISyntaxException e) {
+					e.printStackTrace();
+			    }
+			});
+			
+		} catch(Exception e) {
+			e.printStackTrace();
 		}
 	}
 	
