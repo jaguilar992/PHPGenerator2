@@ -477,13 +477,14 @@ public class Controller implements Initializable{
 			desc.setPrefHeight(292);
 			raiz.getChildren().add(desc);
 			
+			
 			Scene scene = new Scene(raiz);
 			stage.setScene(scene);
 			stage.setResizable(false);
 			stage.setTitle("About");
 			stage.getIcons().add(new Image("img/logo.png"));
 			stage.show();
-			
+					
 			url1.setOnMouseClicked((event)->{
 			    try {
 			    	Desktop.getDesktop().browse(new URL(url1.getText()).toURI());
