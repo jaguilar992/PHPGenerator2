@@ -1,6 +1,9 @@
 package application;
 
 import java.awt.Desktop;
+import java.io.BufferedWriter;
+import java.io.File;
+import java.io.FileWriter;
 import java.io.IOException;
 import java.net.URISyntaxException;
 import java.net.URL;
@@ -29,6 +32,8 @@ import javafx.scene.input.KeyCode;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.text.Text;
 import javafx.scene.text.TextFlow;
+import javafx.stage.FileChooser;
+import javafx.stage.FileChooser.ExtensionFilter;
 import javafx.stage.Stage;
 import model.Atributo;
 import model.Documento;
@@ -509,6 +514,82 @@ public class Controller implements Initializable{
 			e.printStackTrace();
 		}
 	}
+	
+	@FXML
+	public void Save() {
+		Guardar(1);
+	}
+	@FXML
+	public void SaveAs() {
+		Guardar(2);
+	}
+	public void Guardar(int type) {
+		String name = txtNombreDocumento.getText();
+		String content = txtEditor.getText();
+		if (!name.equals("") && !content.equals("")) {
+			Stage stage = (Stage)btnGenerate.getScene().getWindow();
+			FileChooser fileChooser = new FileChooser();
+			 fileChooser.getExtensionFilters().addAll(
+			         new ExtensionFilter("PHP File", "*.php"),
+			         new ExtensionFilter("Text Files", "*.txt"),
+			         new ExtensionFilter("All Files", "*.*"));
+			 fileChooser.setInitialFileName(name);
+			 
+			 BufferedWriter writer; 
+			 
+			 switch (type) {
+				case 1:
+					fileChooser.setTitle("Guardar:");
+					if(mainDoc.getPath()!="") {
+						try {
+							writer = new BufferedWriter(new FileWriter(new File(mainDoc.getPath())));
+							writer.write(txtEditor.getText());
+							System.out.println(mainDoc.getPath());
+							writer.close();
+						} catch (IOException e) {
+							e.printStackTrace();
+						}
+					}else {
+						File selectedFile = fileChooser.showSaveDialog(stage);
+						if(selectedFile!=null) {
+							mainDoc.setPath(selectedFile.getAbsolutePath());
+							try {
+								writer = new BufferedWriter(new FileWriter(new File(mainDoc.getPath())));
+								writer.write(txtEditor.getText());
+								writer.close();
+							} catch (IOException e) {
+								e.printStackTrace();
+							}
+						}
+					}
+				break;
+				case 2:
+					fileChooser.setTitle("Guardar como:");
+					String path=mainDoc.getPath().replace(mainDoc.getNameDoc()+".php", "");
+					System.out.println(path);
+					fileChooser.setInitialDirectory(new File(path));
+					File selectedFile = fileChooser.showSaveDialog(stage);
+					if(selectedFile!=null) {
+						mainDoc.setPath(selectedFile.getAbsolutePath());
+						try {
+							writer = new BufferedWriter(new FileWriter(new File(mainDoc.getPath())));
+							writer.write(txtEditor.getText());
+							writer.close();
+						} catch (IOException e) {
+							e.printStackTrace();
+						}
+					}
+				break;
+				default:break;
+			}
+		}else {
+			Alert alert = new Alert(AlertType.WARNING);
+			alert.setTitle("Alerta");
+			alert.setHeaderText("Nombre de Clase y/o contenido de archivo vacío");
+			alert.showAndWait();
+		}
+	}
+	
 	
 }
 
