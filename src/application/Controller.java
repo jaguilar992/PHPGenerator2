@@ -162,10 +162,10 @@ public class Controller implements Initializable{
 		// ENTER EN MET ATRIB
 		txtIdentificadorMetodo.setOnKeyPressed((event) -> { 
 			if(event.getCode() == KeyCode.ENTER) { 
-				if (selectedMetodo!=-1) {
+				if (selectedMetodo==-1) {
 					addItemMetodos();
 				}else {
-					addItemMetodos();
+					setItemMetodos();
 				}
 		}});
 		// TABLE VIEW
